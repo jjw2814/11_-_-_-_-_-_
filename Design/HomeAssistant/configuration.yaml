@@ -49,21 +49,6 @@ mqtt:
     name: 21900059_people
 
   switch:
-    - name: "USB LED"
-      state_topic: "iot/21900059"
-      command_topic: "iot/21900059"
-      qos: 0
-      payload_on: "usbledon"
-      payload_off: "usbledoff"
-      retain: false
-
-    - name: "LED"
-      state_topic: "iot/21900059"
-      command_topic: "iot/21900059"
-      qos: 0
-      payload_on: "ledon"
-      payload_off: "ledoff"
-      retain: false
     - name: "Bus Wait Mode"
       state_topic: "iot/22001020"
       command_topic: "iot/22001020"
