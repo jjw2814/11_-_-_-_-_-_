@@ -17,6 +17,7 @@
 - Home Assistant
 - PIR Sensor(HC-SR501)
 - 국토교통부_(TAGO)_버스도착정보 API
+- Gas Sensor(MQ-7)
 
 ## Repository 개요
  - Docs : 해당 프로젝트의 보고서를 포함하는 저장소입니다.
