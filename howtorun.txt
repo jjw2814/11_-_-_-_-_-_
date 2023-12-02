@@ -1,0 +1,21 @@
+
+
+Arduino Setting for Sensor part
+
+필요한 보드 메니저:
+  esp8266
+  
+필요한 라이브러리:
+  ESP8266WebServer
+  Adafruit_SSD1306
+  WiFiManager
+  FS
+  PubSubClient
+  DHTesp
+
+센서 및 엑추에이터 핀 연결:
+LED : D0
+GAS (MQ-7) : A0
+DHT22 : D3
+PIR : D5
+SDD1306 : D1(SCL) D2(SDA)
