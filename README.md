@@ -47,3 +47,7 @@
 이 YAML 파일은 Home Assistant의 전반적인 설정을 담고 있습니다. MQTT 센서 설정, Home Assistant의 customization 및 Lovelace 설정 등이 포함되어 있습니다.
 
 프로젝트 전체의 흐름은 ESP32 카메라 모듈에서 데이터를 수집하고, MQTT를 통해 Home Assistant로 전송하여 자동화 및 시각화를 구현하는 것입니다.
+
+### 6. ui-lovelace.yaml
+
+이 yaml 파일은 Home Assistant의 ui를 설정하는 파일입니다. 각각의 Card의 종류 및 포함할 정보를 수정할 수 있습니다.
