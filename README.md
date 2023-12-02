@@ -16,13 +16,20 @@
 - Adafruit_SSD1306
 - Home Assistant
 - PIR Sensor(HC-SR501)
+- 국토교통부_(TAGO)_버스도착정보 API
+
+## Repository 개요
+ - Docs : 해당 프로젝트의 보고서를 포함하는 저장소입니다.
+ - Design : 해당 프로젝트를 구현하는데 사용된 소스코드들을 포함하는 저장소입니다.
+ - Design/Arduino : 소스코드 중 Arduino 코드를 포함하는 저장소입니다.
+ - Design/HomeAssistant : 소스코드 중 Home Assistant를 구동하는데 사용되는 yaml 파일 및 python 파일을 포함하는 저장소입니다.
 
 ## 코드 별 설명
-### 1. CameraWebServer.ino (언어: C++, 라이브러리: esp_camera, WiFi)
+### 1. CameraWebServer.ino (언어: Arduino, 라이브러리: esp_camera, WiFi)
 
 이 코드는 ESP32 기반 카메라 모듈을 사용하여 웹 서버를 구축하는 코드입니다. 카메라에서 캡처한 영상을 스트리밍하고, WiFi를 통해 웹 페이지에 접근할 수 있도록 합니다.
 
-### 2. project.ino (언어: C++, 라이브러리: DHTesp, PubSubClient, Adafruit_SSD1306, WiFiManager)
+### 2. project.ino (언어: Arduino, 라이브러리: DHTesp, PubSubClient, Adafruit_SSD1306, WiFiManager)
 
 이 코드는 DHT22 온습도 센서 및 가스 센서와 연동하여 데이터를 수집하고, MQTT 프로토콜을 사용하여 데이터를 전송합니다. 또한 OLED 디스플레이를 사용하여 센서 데이터를 표시하고, WiFiManager를 통해 WiFi 및 MQTT 설정을 관리합니다.
 
