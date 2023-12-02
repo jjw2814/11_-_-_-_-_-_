@@ -1,1 +1,114 @@
 
+# Loads default set of integrations. Do not remove.
+default_config:
+
+homeassistant:
+  name: IoTClass-ParkSH
+  latitude: 36.103295
+  longitude: 129.387009
+  elevation: 30
+
+  customize:
+    sensor.21900059_temperature:
+      icon: mdi:oil-temperature
+    sensor.21900059_humidity:
+      icon: mdi:water-percent
+    sensor.21900059_light_intensity:
+      icon: mdi:lightbulb
+    "sensor.yangdeog":
+      icon: mdi:bus-clock
+    "sensor.302_gibon":
+      icon: mdi:bus-clock
+lovelace:
+#  mode: yaml
+  mode: storage
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+mqtt:
+  sensor:
+  - state_topic: "iot/21900059/dht22"
+    name: 21900059_temperature
+    value_template: "{{ value_json.data.temperature }}"
+  - state_topic: "iot/21900059/dht22"
+    name: 21900059_humidity
+    value_template: "{{ value_json.data.humidity }}"
+  - state_topic: "iot/21900059/gas"
+    name: 21900059_gas
+  - state_topic: "iot/21900059/people"
+    name: 21900059_people
+
+  switch:
+    - name: "USB LED"
+      state_topic: "iot/21900059"
+      command_topic: "iot/21900059"
+      qos: 0
+      payload_on: "usbledon"
+      payload_off: "usbledoff"
+      retain: false
+
+    - name: "LED"
+      state_topic: "iot/21900059"
+      command_topic: "iot/21900059"
+      qos: 0
+      payload_on: "ledon"
+      payload_off: "ledoff"
+      retain: false
+    - name: "Bus Wait Mode"
+      state_topic: "iot/22001020"
+      command_topic: "iot/22001020"
+      qos: 0
+      payload_on: "awayon"
+      payload_off: "awayoff"
+      retain: false
+
+sensor:
+  - platform: command_line
+    name: CPU Temperature
+    command: "cat /sys/class/thermal/thermal_zone0/temp"
+    unit_of_measurement: "C"
+    value_template: "{{value | multiply(0.001) | round(1)}}"
+  - platform: command_line
+    name: Bus information
+    command: python3 ~/.homeassistant/bus_info.py
+    json_attributes:
+      - '302(기본)'
+      - '양덕'
+    scan_interval: 60
+
+
+group:
+  default_view:
+  MyData:
+    name: "NodeMCU"
+    entities:
+      - sensor.21900059_temperature
+      - sensor.21900059humidity
+      - sensor.21900059_light_intensity
+      - sensor.21900059_gas
+      - sensor.21900059_people
+template:
+  - sensor:
+    - name: "302(기본)"
+      state: "{{ state_attr('sensor.bus_information', '302(기본)') }}"
+    - name: "양덕"
+      state: "{{ state_attr('sensor.bus_information', '양덕') }}"
+
+panel_iframe:
+  esp32_cam:
+    title: ESP32-CAM
+    icon: mdi:camera
+    url: http://192.168.137.150/
+device_tracker:
+  - platform: gpslogger
+    webhook_ID: fdbafae9ee586d00adec0664fc8ebed419b9bf80312218bd278b86fdcd3bfa0c
