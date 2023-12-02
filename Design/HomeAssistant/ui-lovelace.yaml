@@ -1,0 +1,27 @@
+title: 동아리 방 관리 시스템
+views:
+  - path: default_view
+    title: Home
+    cards:
+     - type: entities
+       entities:
+         - entity: sensor.21900059_temperature
+         - entity: sensor.21900059_humidity
+         - entity: sensor.21900059_gas
+         - entity: sensor.21900059_people
+       title: NodeMCU
+       show_header_toggle: true
+     - type: entities
+       entities:
+         - switch.bus_wait_mode
+       show_header_toggle: false
+     - type: entities
+       entities:
+         - sensor.302_gibon
+         - sensor.yangdeog
+     - type: entities
+       entities:
+         - device_tracker.sm_n981n
+     - type: map
+       entities:
+         - device_tracker.sm_n981n
