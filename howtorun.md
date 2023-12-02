@@ -30,7 +30,7 @@
 
 # GPSLogger
 
-Home Assistant의 Devices & Service에서 GPSLogger Integration을 추가하고, 추가 시 나오는 WebHook URL을 복사해둔다.
-개발자의 깃허브(https://github.com/mendhak/gpslogger/releases)에서 안드로이드용 애플리케이션을 설치한다.
-https://www.home-assistant.io/integrations/gpslogger의 설명에 따라 설정을 진행한다.
-Home Assistant 모바일 애플리케이션에서 Settings - Companion App - 센서 관리에 들어가 위치 센서 항목들을 전부 활성화해준다.
+1. Home Assistant의 Devices & Service에서 GPSLogger Integration을 추가하고, 추가 시 나오는 WebHook URL을 복사해둔다.
+2. 개발자의 깃허브(https://github.com/mendhak/gpslogger/releases)에서 안드로이드용 애플리케이션을 설치한다.
+3. https://www.home-assistant.io/integrations/gpslogger의 설명에 따라 설정을 진행한다.
+4. Home Assistant 모바일 애플리케이션에서 Settings - Companion App - 센서 관리에 들어가 위치 센서 항목들을 전부 활성화해준다.
