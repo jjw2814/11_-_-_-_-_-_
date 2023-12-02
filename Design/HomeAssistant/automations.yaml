@@ -1,1 +1,92 @@
+- id: alert_bus_time
+  alias: Alert bus time
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.yangdeog
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: switch.bus_wait_mode
+      state: 'on'
+    - condition: numeric_state
+      entity_id: sensor.yangdeog
+      below: 11
+  action:
+  - service: notify.mobile_app_iphone
+    data:
+      message: 302번 버스가 10분 이내로 도착합니다
+  initial_state: true
 
+- id: alert_bus_time2
+  alias: Alert bus time2
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: sensor.302_gibon
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: switch.bus_wait_mode
+      state: 'on'
+    - condition: numeric_state
+      entity_id: sensor.302_gibon
+      below: 11
+  action:
+    service: notify.mobile_app_iphone
+    data:
+      message: 302(기본) 버스가 10분 이내로 도착합니다
+  initial_state: true
+
+- id: alert_thief
+  alias: Alert thief
+  trigger:
+    - platform: state
+      entity_id: sensor.21900059_people
+  condition:
+    - condition: and
+      conditions:
+        - condition: state
+          entity_id: device_tracker.sm_n981n
+          state: 'not_home'
+        - condition: numeric_state
+          entity_id: sensor.21900059_people
+          above: 0
+  action:
+    - service: notify.mobile_app_iphone
+      data:
+        message: 외부인이 침입했습니다
+  initial_state: true
+
+
+- id: alert_fire
+  alias: Fire Alert
+  initial_state: true
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.21900059_gas
+      above: 210
+  action:
+    - service: notify.mobile_app_iphone  # 알림 서비스 선택
+      data:
+        message: "Fire!!!"  # 원하는 알림 메시지
+
+
+- id: json_bus_time
+  alias: "Send bus data to MQTT"
+  trigger:
+    platform: state
+    entity_id:
+      - sensor.bus_information
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "iot/21900059/bus_info"
+        payload: >
+          {
+            "302": "{{ state_attr('sensor.bus_information', '302(기본)') }}",
+            "yangdeok": "{{ state_attr('sensor.bus_information', '양덕') }}"
+          }
+                                                                                                   
