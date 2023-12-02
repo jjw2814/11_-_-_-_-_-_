@@ -11,7 +11,7 @@
 ## Requirements
 - NodeMCU(ESP8266)
 - RaspberryPi 4
-- ESP32 - cam
+- ESP32-CAM-MB
 - DHT22
 - Adafruit_SSD1306
 - Home Assistant
